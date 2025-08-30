@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Resources\Address\AddressResource;
 use App\Models\Address;
+use App\Models\Constant;
 use App\Responses\ErrorResponse;
 use App\Responses\SuccessResponse;
 
@@ -22,18 +23,23 @@ class AddressService extends Service
         return $this->success_response->response(AddressResource::collection($address));
     }
 
-    public function create()
+    public function create($request)
     {
-
+        $address = $this->model->create($request->all());
+        return $this->success_response->response(new AddressResource($address));
     }
 
-    public function update()
+    public function update($request , $id)
     {
-
+        $address = $this->model->getAddressById($id);
+        $address->update($request->all());
+        return $this->success_response->response(new AddressResource($address));
     }
 
-    public function  delete()
+    public function  delete($id)
     {
-
+        $address = $this->model->getAddressById($id);
+        $address->delete();
+        return $this->success_response->response(Constant::SUCCESS_RESPONSE);
     }
 }
