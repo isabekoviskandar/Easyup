@@ -21,4 +21,9 @@ class Address extends Model
     {
         return self::findOrFail($id);
     }
+
+    public function profile()
+    {
+        return $this->hasMany(Profile::class);
+    }
 }

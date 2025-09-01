@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 
 class AddressController extends Controller
 {
-
     public function __construct(AddressService $service)
     {
         $this->service = $service;
