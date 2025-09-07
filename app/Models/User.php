@@ -53,4 +53,9 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function otp()
+    {
+        return $this->hasMany(Otp::class , 'user_id');
+    }
+
 }
